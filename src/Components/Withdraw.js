@@ -66,12 +66,9 @@ const Withdraw = (data) => {
       } else {
         console.error(switchError);
       }
-      if(switchError.message){
-        alert("Something Went wrong, Please try again.");
-        window.location.reload();
-      }
     }
   };
+
 
   const paytip = async () => {
     try {
@@ -94,6 +91,9 @@ const Withdraw = (data) => {
       setExplorer(networkParams[currentProvider].blockExplorerUrls);
       const tx = await contract.ammountOfTip(Username);
       setTip(tx.toString());
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     } catch (err) {
       console.log(err);
       if(err.message.includes("User denied account authorization")){
@@ -107,18 +107,18 @@ const Withdraw = (data) => {
     try{
     switchNetwork();
     const contractAddress = ContractAdd;
+    setLoading(true);
     const withdrawABI = ["function withdraw(string memory username, string memory Key) public"];
     const contract = new ethers.Contract(contractAddress, withdrawABI, signer);
-    setLoading(true);
     const tx = await contract.withdraw(Username, Key);
+
     tx.wait().then((receipt) => {
       console.log("Withdrawn");
       console.log(receipt["hash"]);
+      setTxHash(tx.hash);
+    }).then(() => {
+      handleRefresh();
     });
-    setLoading(false);
-    console.log(tx);
-    setTxHash(tx.hash);
-    handleRefresh();
   } catch (err){
     console.log(err);
     if(err.message.includes("User denied transaction signature")){
@@ -128,7 +128,6 @@ const Withdraw = (data) => {
     
     if(err.message.includes("No tips available to withdraw")){
       alert("Sadly! You don't have any tips.");
-      window.location.reload();
     }else if(err.message){
       alert("Something Went wrong, Please try again.");
       window.location.reload();
@@ -137,7 +136,9 @@ const Withdraw = (data) => {
   };
 
   useEffect(() => {
-    paytip();
+    if(!Tip){
+      paytip();
+    }
   });
 
   useEffect(() => {
@@ -149,13 +150,10 @@ const Withdraw = (data) => {
   const handleRefresh = () => {
     setTip(null);
     setLoading(true);
-    setTimeout(() => {}, 10000);
-    setLoading(false);
     paytip();
   };
 
   const HashLink = (hash) => {
-    console.log(Explorer, hash);
     if(Explorer && hash)
     var link = Explorer + hash;
     return link;
@@ -167,7 +165,7 @@ const Withdraw = (data) => {
         <div className="withdraw-block">
           <div className="balance">
             {loading && <Loading />}
-            <p>You have {ethers.formatEther(Tip.toString())} tips!</p>
+            <p>You have {ethers.formatEther(Tip.toString())} ETH tips!</p>
             <button className="refresh" onClick={handleRefresh}>
               Refresh
             </button>
@@ -181,7 +179,7 @@ const Withdraw = (data) => {
         </div>
       ) : (
         <div className="loading">
-          <Loading />
+          {loading && <Loading />}
         </div>
       )}
     </div>

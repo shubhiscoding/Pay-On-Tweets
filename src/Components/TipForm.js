@@ -204,6 +204,7 @@ const TipForm = (provider) => {
     console.log(Explorer, hash);
     if(Explorer && hash)
     var link = Explorer + hash;
+  console.log(link);
     return link;
   }
 

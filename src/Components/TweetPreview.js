@@ -36,7 +36,12 @@ const TweetPreview = ({ url, payTip }) => {
         button.classList.add("confirm-btn");
         button.innerText = "Confirm";
         container.appendChild(button);
-        button.addEventListener("click", () => payTip());
+        button.addEventListener("click", () => {
+          payTip();
+          setTimeout(() => {
+          document.getElementById("Tip-A-Tweet").scrollIntoView({ behavior: "smooth" });
+          }, 500);
+        });
       }else{
         alert("Please enter a valid tweet URL");
       }
