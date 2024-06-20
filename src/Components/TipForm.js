@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import TweetPreview from "./TweetPreview";
 import { ethers } from "ethers";
 import Loading from "./loading";
@@ -15,26 +15,30 @@ const TipForm = (provider) => {
   const [TransactionProcessing, setTransactionProcessing] = useState(false);
   const [TipSent, setTipSent] = useState("");
   const [Explorer, setExplorer] = useState("");
-
+  const EnterTip = useRef(null);
+  const EnterUrl = useRef(null);
+  useEffect(() => {
+    if(window.location.href.includes("?amount=")) {
+      const currUrl = window.location.href;
+      const splited = currUrl.split("?amount=")[1];
+      const tipAmount = parseFloat(splited);
+      const TweetUrl = splited.split("?url=%22")[1];
+      const form = document.getElementById("Tip-A-Tweet");
+      if(form){
+        form.scrollIntoView({ behavior: "smooth" });
+      }
+      if(tipAmount > 0){
+        EnterTip.current.value = tipAmount;
+        handleInputChange(setTip);
+      }
+      if(TweetUrl){
+        EnterUrl.current.value = (TweetUrl.split("%")[0]);       
+        setUrl(EnterUrl.current.value);
+        setTip(EnterTip.current.value);
+      }
+    }
+  }, []);
   const networkParams = {
-    "Sepolia ETH": {
-      chainId: "0xaa36a7", // Chain ID for Sepolia
-      chain: "11155111",
-      chainName: "Sepolia Test Network",
-      rpcUrls: ["https://rpc.sepolia.org"],
-      nativeCurrency: { name: "Ethereum", symbol: "ETH", decimals: 18 },
-      blockExplorerUrls: ["https://sepolia.etherscan.io/tx/"],
-      contractAddress: "0x9d356bf3f6B154Da52a3eEa5F686480de52Aa8e9",
-    },
-    "Amoy Matic": {
-      chainId: "0x13882", // Chain ID for Mumbai (Polygon Testnet)
-      chain: "80002",
-      chainName: "Amoy Test Network",
-      rpcUrls: ["https://rpc-amoy.polygon.technology/"],
-      nativeCurrency: { name: "Matic", symbol: "MATIC", decimals: 18 },
-      blockExplorerUrls: ["https://www.oklink.com/amoy/tx/"],
-      contractAddress: "0x7E90f2E631345D3F1e1056CaD15a2553360Dd73d",
-    },
     "Base Sepolia Testnet": {
       chainId: "0x14a34",
       chain: "84532",
@@ -79,10 +83,6 @@ const TipForm = (provider) => {
   }, [TipSent]);
 
   const tipform = async () => {
-    if (!Url || !Tip) {
-      alert("Please enter a valid tweet url and tip amount");
-      return;
-    }
     if (Url) {
       const parts = Url.split("/");
       if (parts.length < 6) {
@@ -219,12 +219,14 @@ const TipForm = (provider) => {
           className="tweetInput"
           placeholder="Enter Tweet url"
           onChange={handleInputChange(setUrl)}
+          ref={EnterUrl}
         />
         <input
           type="number"
           className="tweetInput"
           placeholder="Enter your tip Amount"
           onChange={handleInputChange(setTip)}
+          ref={EnterTip}
         />
         <div className="labels">
           <button onClick={tipform}>Tip the tweet</button>

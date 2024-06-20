@@ -16,6 +16,7 @@ const TweetPreview = ({ url, payTip }) => {
     if (url) {
       const id = extractTweetId(url);
       if (id === null || isNaN(id)) {
+        console.log("Invalid tweet URL");
         alert("Please enter a valid tweet URL");
         return;
       }

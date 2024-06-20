@@ -3,7 +3,6 @@ import "../Styles/Home.css";
 
 const Home = ({ onLottieLoaded }) => {
     const lottieRef = useRef(null);
-
     useEffect(() => {
         const lottieElement = lottieRef.current;
 
