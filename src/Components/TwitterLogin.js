@@ -97,7 +97,7 @@ const TwitterLogin = (currentProvider) => {
 
   return (
     <div className="TwitterLogin" id="claim-tips">
-    <div className="name"><h1>Claim Your <span className="tip-blue">Tips</span></h1></div>
+    <div className="name"><h1>Claim Your <span className="tip-blue">Funds</span></h1></div>
       <div className="Withdraw-Content">
         {user ? (
           <div className="User-details">

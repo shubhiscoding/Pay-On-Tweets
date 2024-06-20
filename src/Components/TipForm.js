@@ -213,7 +213,7 @@ const TipForm = (provider) => {
       <lottie-player src="https://lottie.host/de5d2b44-6f66-4b0a-a3ee-c1382da7aecf/Ku8FulinD6.json" background="transparent" speed="1" style={{width: '100%', height: '100%'}} loop autoplay direction="1" mode="normal"></lottie-player>
       
       <div className="TipForm" id="Tip-A-Tweet">
-        <h1>Tip a Tweet</h1>
+        <h1>Pay On Tweet</h1>
         <input
           type="text"
           className="tweetInput"
@@ -229,7 +229,7 @@ const TipForm = (provider) => {
           ref={EnterTip}
         />
         <div className="labels">
-          <button onClick={tipform}>Tip the tweet</button>
+          <button onClick={tipform}>Send</button>
         </div>
         {showPreview && Username && (
           <div className="tweet" id="preview">

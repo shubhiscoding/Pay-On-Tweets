@@ -32,17 +32,22 @@ const Home = ({ onLottieLoaded }) => {
     return (
         <div className="home">
             <div className="texts">
-                <h1 className="tittle">Tip-A-Tweet</h1>
+                <h1 className="tittle">Pay On Tweets</h1>
                 <div className="home-content">
-                    <h1>Empower Creators!</h1>
+                    <h1>Pay people Just by there Tweets!</h1>
                     <p>
-                        Welcome to the platform that revolutionizes tipping for the digital
-                        age. Here, you can seamlessly reward creators you admire on Twitter
-                        with cryptocurrency.
+                        Welcome to the platform that revolutionizes Payments for the digital
+                        age. Here, you can seamlessly pay twitter users
+                        with cryptocurrency, by just there tweets. 
                     </p>
+                    <div className="Notes">
+                    <h3>NO KYC NEEDED!</h3>
+                    <h3>No SIGN UP NEEDED!</h3>
+                    <h3>NO WALLET ADDRESS NEEDED!</h3>
+                    </div>
                     <div className="buttons">
-                        <button onClick={claimtip}>Claim-Tips</button>
-                        <button onClick={tipatweet}>Tip-A-Tweet</button>
+                        <button onClick={claimtip}>Claim Funds</button>
+                        <button onClick={tipatweet}>Send Funds</button>
                     </div>
                 </div>
             </div>
