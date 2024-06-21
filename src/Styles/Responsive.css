@@ -72,6 +72,21 @@
         padding: 0.5rem 1.5rem;
         font-size: 1.3rem;
     }
+    .TweetPreview .twitter-tweet iframe {
+        min-width: 0px;
+        width: 100% !important;
+    }
+    .TweetPreview div {
+        width: 95%;
+        padding: 0;
+    }
+    .twitter-tweet-rendered {
+        max-width: 100% !important;
+    }
+    #app {
+        max-width: 100px !important;
+    
+    }
   }
   
   /* Styles for screens smaller than 480px */

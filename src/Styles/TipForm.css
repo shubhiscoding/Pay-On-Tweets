@@ -94,6 +94,7 @@ html {
     overflow: hidden; /* Prevent overflow */
 }
 
+
 .TweetPreview .twitter-tweet {
     display: flex;
     flex-direction: column;
@@ -101,16 +102,16 @@ html {
     align-items: center;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    /* background-color: #2e2e3e; Dark background */
     padding: 1rem;
-    width: 80%; /* Ensure it doesn't take too much space */
+    width: 100%; /* Ensure it doesn't take too much space */
     margin: 1rem 0;
-    overflow: hidden; /* Prevent overflow */
+    overflow: auto;
 }
+
 
 .TweetPreview .twitter-tweet iframe {
     transform-origin: top left;
-    width: 100%; /* Ensure responsiveness */
+    width: 100% !important;
     margin: 0;
     border-radius: 10px;
     min-width: 400px;
