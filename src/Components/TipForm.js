@@ -4,6 +4,7 @@ import { ethers } from "ethers";
 import Loading from "./loading";
 import "../Styles/loading.css";
 import ether from "../Assets/ether.jpg";
+import { set } from "firebase/database";
 
 const TipForm = (provider) => {
   const [Username, setUsername] = useState("");
@@ -83,6 +84,10 @@ const TipForm = (provider) => {
   }, [TipSent]);
 
   const tipform = async () => {
+    if(showPreview){
+      document.getElementById("Tip-A-Tweet").scrollIntoView({ behavior: "smooth" });
+      setShowPreview(false);
+    }
     if (Url) {
       const parts = Url.split("/");
       if (parts.length < 6) {
