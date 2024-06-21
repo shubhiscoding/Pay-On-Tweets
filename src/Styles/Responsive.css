@@ -170,6 +170,9 @@
         padding-left: 1rem;
         flex-direction: column-reverse;
     }
+    .home p {
+        display : none;
+    }
     .labels{
         margin-left:65%;
     }
