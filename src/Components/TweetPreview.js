@@ -9,7 +9,11 @@ const TweetPreview = ({ url, payTip }) => {
   useEffect(() => {
     const extractTweetId = (url) => {
       const parts = url.split("/");
+      console.log(parts);
       setUsername(parts[3]);
+      if(parts[parts.length - 1].includes("?")){
+        return parts[parts.length - 1].split("?")[0];
+      }
       return parts[parts.length - 1];
     };
 
