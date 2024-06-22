@@ -1,3 +1,3 @@
-# Tip-Social-BaseChain
+# Pay On Tweets
 
-Try it here: https://tip-a-tweet-base-chain.vercel.app/
+Try it here: https://payontweets.vercel.app/
