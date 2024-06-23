@@ -4,8 +4,8 @@ Try it here: https://payontweets.vercel.app/
 
 # Steps To Setup on Local Host:
 
-### Step 1: ````` Clone the repo `````
-### Step 2: ``` Navigate to the repo's directory in the terminal and run :```
+### Step 1: ``` Clone the repo ```
+### Step 2: ```Navigate to the repo's directory in the terminal and run:```
 ```
 npm install
 ```
@@ -14,7 +14,7 @@ npm install
 npm start
 ```
 
-### Step 4: ``` Navigate to [ http://localhost:3000/ ]```
+### Step 4: ```Navigate to [ http://localhost:3000/ ]```
 
 # DEMO VIDEO
 
