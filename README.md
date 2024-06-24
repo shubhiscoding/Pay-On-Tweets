@@ -2,6 +2,8 @@
 
 Try it here: https://payontweets.vercel.app/
 
+Try the browser extension here: https://github.com/shubhiscoding/BrowserExtension-Pay-On-Tweet
+
 # Steps To Setup on Local Host:
 
 ### Step 1: ``` Clone the repo ```
